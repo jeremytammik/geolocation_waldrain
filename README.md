@@ -51,6 +51,7 @@ More precise calculations are suggested by the following three articles:
 
 Here is the result of calculating the distances between along the edges between the six given points and comparing woth the given edge lengths:
 
+```
 Edge    | Given | 1.            | 2.            | 3.
 NW - NO | 31.10 | 31.01 (-0.09) | 30.96 (-0.14) | 31.07 (-0.03)
 NO - OM | 13.34 | 13.38 (+0.04) | 13.36 (+0.02) | 13.37 (+0.03)
@@ -58,5 +59,6 @@ OM - SO | 22.51 | 22.55 (+0.04) | 22.52 (+0.01) | 22.53 (+0.02)
 SO - SW | 29.63 | 29.56 (-0.07) | 29.51 (-0.12) | 29.62 (-0.01)
 SW - WM | 19.26 | 19.24 (-0.02) | 19.22 (-0.04) | 19.23 (-0.03)
 WM - NW | 16.24 | 16.28 (+0.04) | 16.25 (+0.01) | 16.26 (+0.02)
+```
 
 The third algorithm seems to return the most precise results, assuming the given points and edge distances are correct to start with.
