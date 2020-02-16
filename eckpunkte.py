@@ -135,10 +135,16 @@ def sreal(x):
   "Format real numer to two decimanl places."
   return '{0:.2f}'.format( x )
 
+def ssreal(x):
+  "Format real numer to two decimanl places with leading plus or minus sign."
+  s = sreal(x)
+  if 0 >= x: s = '+' + s
+  return s
+
 def calculate_and_compare(f,i,j,e):
   "Return string result for calculating and comparing with expected result"
   d = f( pts[i][0], pts[i][1], pts[j][0], pts[j][1])
-  return sreal(d) + ' (' + sreal(abs(d-e)) + ')'
+  return sreal(d) + ' (' + ssreal(d-e) + ')'
 
 for i in range(n):
   j = i + 1
