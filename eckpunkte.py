@@ -4,6 +4,36 @@
 
 import math, numpy
 
+# Input data
+
+pts = [
+  [47.61240287934088,7.668455564143808],
+  [47.61238603493116,7.66886803694362],
+  [47.612273612015436,7.668805013356426],
+  [47.612081232450755,7.668710772100395],
+  [47.61209766306042,7.668317607008359],
+  [47.612263038360155,7.668392271613928]]
+
+pts = [
+  [47.61240288,7.66845556],
+  [47.61238603,7.66886804],
+  [47.61227361,7.66880501],
+  [47.61208123,7.66871077],
+  [47.61209766,7.66831761],
+  [47.61226304,7.66839227]]
+
+tags = ['NW','NO','OM','SO','SW','WM']
+
+edge_length = [ # in metres
+  31.10, # Nord
+  13.34, 22.51, # Ost
+  29.63, # Sued
+  19.26, 16.24 ] # West
+
+area = 1043 # square metres
+
+# Three distance calculation functions
+
 def lat_lon_dist_1(lat1, lon1, lat2, lon2):
   """Return distance between to latitude longtitude points.
   
@@ -99,31 +129,7 @@ def lat_lon_dist_3(lat1, lon1, lat2, lon2):
   
   return dist_m
 
-pts = [
-  [47.61240287934088,7.668455564143808],
-  [47.61238603493116,7.66886803694362],
-  [47.612273612015436,7.668805013356426],
-  [47.612081232450755,7.668710772100395],
-  [47.61209766306042,7.668317607008359],
-  [47.612263038360155,7.668392271613928]]
-
-pts = [
-  [47.61240288,7.66845556],
-  [47.61238603,7.66886804],
-  [47.61227361,7.66880501],
-  [47.61208123,7.66871077],
-  [47.61209766,7.66831761],
-  [47.61226304,7.66839227]]
-
-tags = ['NW','NO','OM','SO','SW','WM']
-
-edge_length = [ # in metres
-  31.10, # Nord
-  13.34, 22.51, # Ost
-  29.63, # Sued
-  19.26, 16.24 ] # West
-
-area = 1043 # square metres
+# Calculate and compare distances
 
 n = len(pts)
 
@@ -138,12 +144,6 @@ ys = [p[1] for p in pts]
 centre_point = [numpy.mean(xs), numpy.mean(ys)]
 
 print('centre point:\n ', centre_point)
-
-#print('offsets from centre point:\n ', centre_point)
-
-#edge_lengths = [lat_lon_dist(pts[i-1][0], pts[i-1][1], pts[i][0], pts[i][1]) for i in range(n)]
-
-#print('edge lengths:\n ', edge_lengths)
 
 print('edge lengths:')
 
