@@ -138,7 +138,7 @@ def sreal(x):
 def ssreal(x):
   "Format real numer to two decimanl places with leading plus or minus sign."
   s = sreal(x)
-  if 0 >= x: s = '+' + s
+  if 0 <= x: s = '+' + s
   return s
 
 def calculate_and_compare(f,i,j,e):
