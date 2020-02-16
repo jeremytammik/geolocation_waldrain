@@ -6,6 +6,10 @@ To begin with, I had six unconfirmed latitude and longtitude coordinates for the
 
 I also had pretty precise edge length and area measurements in metres:
 
+![Edge lengths](img/edge_lengths.png "Edge lengths")
+
+That leads to the following data:
+
 ```
 pts = [
   [47.61240287934088,7.668455564143808],
