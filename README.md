@@ -2,7 +2,7 @@
 
 Python geolocation calculation for the Waldrain plot of land.
 
-To begin with, I had six imprecise unconfirmed latitude and longtitude coordinates for six corner points for a plot of land.
+To begin with, I had six unconfirmed latitude and longtitude coordinates for the six corner points for a plot of land.
 
 I also had pretty precise edge length and area measurements in metres:
 
@@ -23,7 +23,7 @@ edge_length = [
   29.63, # south
   19.26, 16.24 ] # west
 
-area = 
+area = 1043 # square metres
 ```
 
 ## Task
