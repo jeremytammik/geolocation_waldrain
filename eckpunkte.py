@@ -101,12 +101,13 @@ pts = [
 
 tags = ['NW','NO','OM','SO','SW','WM']
 
-edge_length = [
+edge_length = [ # in metres
   31.10, # Nord
   13.34, 22.51, # Ost
   29.63, # Sued
   19.26, 16.24 ] # West
 
+area = 1043 # square metres
 
 n = len(pts)
 
