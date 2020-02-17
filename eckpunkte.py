@@ -16,11 +16,11 @@ pts = [
 
 pts = [
   [47.61240288,7.66845556],
-  [47.61238603,7.66886804],
+  [47.61238590,7.66886850],
   [47.61227361,7.66880501],
-  [47.61208123,7.66871077],
-  [47.61209766,7.66831761],
-  [47.61226304,7.66839227]]
+  [47.61208110,7.66871090],
+  [47.61209720,7.66831761],
+  [47.61226300,7.66839227]]
 
 tags = ['NW','NO','OM','SO','SW','WM']
 
@@ -130,10 +130,12 @@ def lat_lon_dist_3(lat1, lon1, lat2, lon2):
   
   (latlen,longlen) = get_lat_len_to_metre_factors_at(lat)
 
-  dlat = abs(lat2 - lat1) 
-  dlon = abs(lon2 - lon1) 
+  dlat = (lat2 - lat1) * latlen
+  dlon = (lon2 - lon1) * longlen
+  
+  #print( 'dxy', dlat, dlon )
 
-  dist_m = math.sqrt( pow( dlat * latlen, 2) + pow( dlon * longlen, 2) )
+  dist_m = math.sqrt( pow( dlat, 2) + pow( dlon, 2) )
   
   return dist_m
 
@@ -182,37 +184,35 @@ for i in range(n):
   j = i + 1
   if j >= n: j -= n
   e = edge_length[i]
-  print(tags[i], '-', tags[j] + ':', s_real(e),
+  print(" ", tags[i], '-', tags[j] + ':', s_real(e),
     calculate_and_compare( lat_lon_dist_1, i, j, e ),
     calculate_and_compare( lat_lon_dist_2, i, j, e ),
     calculate_and_compare( lat_lon_dist_3, i, j, e ))
 
 # Convert the corner point coordinates to metres
 
-lat = centre_point[0] * deg2rad / 2.0
+lat = centre_point[0] * deg2rad
 
 (latlen,longlen) = get_lat_len_to_metre_factors_at(lat)
 
-print(latlen,longlen)
-
-pts_in_m = [[p[1] * longlen, p[0] * latlen] for p in pts]
-
-print( 'pts in m', pts_in_m )
+#print(latlen,longlen)
 
 ctr_in_m = [centre_point[1] * longlen, centre_point[0] * latlen]
 
-print( 'ctr in m', ctr_in_m )
+#print( 'ctr in m', ctr_in_m )
 
-pts_in_m = [[p[1] - ctr_in_m[1], p[0] - ctr_in_m[0]] for p in pts_in_m]
+pts_in_m \
+  = [[p[1] * longlen - ctr_in_m[0], \
+      p[0] * latlen - ctr_in_m[1]] for p in pts]
 
-print( 'pts in m', pts_in_m )
+#print( 'pts in m', pts_in_m )
 
 xs = [p[0] for p in pts_in_m]
 ys = [p[1] for p in pts_in_m]
 
-print('xs',xs)
-print('ys',ys)
+#print('xs',xs)
+#print('ys',ys)
 
 area_calculated = polygon_area(xs, ys)
 
-print('area', area_calculated, 'error', s_signed_real(area_calculated - area))
+print('area calculated:\n ', s_real(area_calculated), '(error', s_signed_real(area_calculated - area) + ')')
