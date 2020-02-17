@@ -197,8 +197,11 @@ lat = centre_point[0] * deg2rad / 2.0
 
 (latlen,longlen) = get_lat_len_to_metre_factors_at(lat)
 
-xs = [(p[0] - centre_point[0]) * latlen for p in pts]
-ys = [(p[1] - centre_point[1]) * longlen for p in pts]
+ys = [(p[0] - centre_point[0]) * latlen for p in pts]
+xs = [(p[1] - centre_point[1]) * longlen for p in pts]
+
+print('xs',xs)
+print('ys',ys)
 
 area_calculated = polygon_area(xs, ys)
 
