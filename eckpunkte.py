@@ -202,4 +202,4 @@ ys = [p[1] * longlen for p in pts]
 
 area_calculated = polygon_area(xs, ys)
 
-print('area', area, 'error', s_signed_real(area_calculated, area))
+print('area', area, 'error', s_signed_real(area_calculated - area))
