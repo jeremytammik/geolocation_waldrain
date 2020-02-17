@@ -35,7 +35,7 @@ area = 1043 # square metres
 # Three distance calculation functions
 
 def lat_lon_dist_1(lat1, lon1, lat2, lon2):
-  """Return distance between to latitude longtitude points.
+  """Return distance between two latitude longtitude points.
   
   Generally used geo measurement function from:
   
@@ -66,7 +66,7 @@ def lat_lon_dist_1(lat1, lon1, lat2, lon2):
   return d * 1000 # meters
 
 def lat_lon_dist_2(lat1, lon1, lat2, lon2):
-  """Return distance between to latitude longtitude points.
+  """Return distance between two latitude longtitude points.
   
   Answer numer 2 for the same StackOverflow question:  
   [How to convert latitude or longitude to meters?](https://stackoverflow.com/questions/639695/how-to-convert-latitude-or-longitude-to-meters)
@@ -89,7 +89,7 @@ def lat_lon_dist_2(lat1, lon1, lat2, lon2):
   return dist_m
 
 def lat_lon_dist_3(lat1, lon1, lat2, lon2):
-  """Return distance between to latitude longtitude points from
+  """Return distance between two latitude longtitude points from
   [understanding terms in Length of Degree formula](https://gis.stackexchange.com/questions/75528/understanding-terms-in-length-of-degree-formula/75535#75535)
   """
   deg2rad = math.pi / 180
@@ -110,6 +110,7 @@ def lat_lon_dist_3(lat1, lon1, lat2, lon2):
     + (m2 * math.cos(2 * lat)) \
     + (m3 * math.cos(4 * lat)) \
     + (m4 * math.cos(6 * lat))
+  
   longlen = (p1 * math.cos(lat)) \
     + (p2 * math.cos(3 * lat)) \
     + (p3 * math.cos(5 * lat))
@@ -153,29 +154,32 @@ print('centre point:\n ', centre_point)
 
 print('edge lengths:')
 
-def sreal(x):
+def s_real(x):
   "Format real number to two decimanl places."
   return '{0:.2f}'.format( x )
 
-def ssreal(x):
+def s_signed_real(x):
   "Format real number to two decimanl places with leading plus or minus sign."
-  s = sreal(x)
+  s = s_real(x)
   if 0 <= x: s = '+' + s
   return s
 
 def calculate_and_compare(f,i,j,e):
   "Return string result for calculating and comparing with expected result"
   d = f( pts[i][0], pts[i][1], pts[j][0], pts[j][1])
-  return sreal(d) + ' (' + ssreal(d-e) + ')'
+  return s_real(d) + ' (' + s_signed_real(d-e) + ')'
 
 for i in range(n):
   j = i + 1
   if j >= n: j -= n
   e = edge_length[i]
-  print(tags[i], '-', tags[j] + ':', sreal(e),
+  print(tags[i], '-', tags[j] + ':', s_real(e),
     calculate_and_compare( lat_lon_dist_1, i, j, e ),
     calculate_and_compare( lat_lon_dist_2, i, j, e ),
     calculate_and_compare( lat_lon_dist_3, i, j, e ))
+
+# Convert the corner point coordinates to metres
+
 
 
 #area = polygon_area(xs, ys)
