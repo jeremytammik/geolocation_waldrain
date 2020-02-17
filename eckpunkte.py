@@ -87,7 +87,7 @@ def lat_lon_dist_2(lat1, lon1, lat2, lon2):
   
   return dist_m
 
-def get_lat_len_to_metre_factors_at(lat)
+def get_lat_len_to_metre_factors_at(lat):
   """Return the factors required to convert the length
   of a degree of latitude and longitude at the given
   latitude `lat` to meters from
@@ -144,7 +144,6 @@ def polygon_area(x,y):
   """Return area of polygon enclosed by a series of x and y coordinates, c.f.
   https://stackoverflow.com/questions/24467972/calculate-area-of-polygon-given-x-y-coordinates"""
   return 0.5 * np.abs( np.dot(x,np.roll(y,1)) - np.dot(y,np.roll(x,1)))
-
 
 # Calculate and compare distances
 
