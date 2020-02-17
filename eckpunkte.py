@@ -154,11 +154,11 @@ print('centre point:\n ', centre_point)
 print('edge lengths:')
 
 def sreal(x):
-  "Format real numer to two decimanl places."
+  "Format real number to two decimanl places."
   return '{0:.2f}'.format( x )
 
 def ssreal(x):
-  "Format real numer to two decimanl places with leading plus or minus sign."
+  "Format real number to two decimanl places with leading plus or minus sign."
   s = sreal(x)
   if 0 <= x: s = '+' + s
   return s
