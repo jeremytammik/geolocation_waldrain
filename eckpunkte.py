@@ -138,12 +138,26 @@ def lat_lon_dist_3(lat1, lon1, lat2, lon2):
   return dist_m
 
 def convert_lat_len_coords_to_metres():
-  
-  
+  exit(1)
+
+# Calculate polygon area
+
 def polygon_area(x,y):
   """Return area of polygon enclosed by a series of x and y coordinates, c.f.
   https://stackoverflow.com/questions/24467972/calculate-area-of-polygon-given-x-y-coordinates"""
   return 0.5 * np.abs( np.dot(x,np.roll(y,1)) - np.dot(y,np.roll(x,1)))
+
+# Helper functions for real umber formatting
+
+def s_real(x):
+  "Format real number to two decimanl places."
+  return '{0:.2f}'.format( x )
+
+def s_signed_real(x):
+  "Format real number to two decimanl places with leading plus or minus sign."
+  s = s_real(x)
+  if 0 <= x: s = '+' + s
+  return s
 
 # Calculate and compare distances
 
@@ -163,16 +177,6 @@ print('centre point:\n ', centre_point)
 
 print('edge lengths:')
 
-def s_real(x):
-  "Format real number to two decimanl places."
-  return '{0:.2f}'.format( x )
-
-def s_signed_real(x):
-  "Format real number to two decimanl places with leading plus or minus sign."
-  s = s_real(x)
-  if 0 <= x: s = '+' + s
-  return s
-
 def calculate_and_compare(f,i,j,e):
   "Return string result for calculating and comparing with expected result"
   d = f( pts[i][0], pts[i][1], pts[j][0], pts[j][1])
@@ -189,7 +193,13 @@ for i in range(n):
 
 # Convert the corner point coordinates to metres
 
+lat = centre_point[0] * deg2rad / 2.0
 
+(latlen,longlen) = get_lat_len_to_metre_factors_at(lat)
 
-#area = polygon_area(xs, ys)
+xs = [p[0] * latlen for p in pts]
+ys = [p[1] * longlen for p in pts]
 
+area_calculated = polygon_area(xs, ys)
+
+print('area', area, 'error', s_signed_real(area_calculated, area))
