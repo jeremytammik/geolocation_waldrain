@@ -168,10 +168,9 @@ print( n, 'points:')
 for i in range(n):
   print(' ', tags[i],pts[i])
 
-xs = [p[0] for p in pts]
-ys = [p[1] for p in pts]
-
-centre_point = [np.mean(xs), np.mean(ys)]
+centre_point \
+  = [np.mean( [p[0] for p in pts] ), \
+    np.mean( [p[1] for p in pts] )]
 
 print('centre point:\n ', centre_point)
 
@@ -197,13 +196,22 @@ lat = centre_point[0] * deg2rad / 2.0
 
 (latlen,longlen) = get_lat_len_to_metre_factors_at(lat)
 
-pts_in_m = [[(p[1] - centre_point[1]) * longlen,
-  (p[0] - centre_point[0]) * latlen] for p in pts]
+print(latlen,longlen)
+
+pts_in_m = [[p[1] * longlen, p[0] * latlen] for p in pts]
 
 print( 'pts in m', pts_in_m )
 
-ys = [(p[0] - centre_point[0]) * latlen for p in pts]
-xs = [(p[1] - centre_point[1]) * longlen for p in pts]
+ctr_in_m = [centre_point[1] * longlen, centre_point[0] * latlen]
+
+print( 'ctr in m', ctr_in_m )
+
+pts_in_m = [[p[1] - ctr_in_m[1], p[0] - ctr_in_m[0]] for p in pts_in_m]
+
+print( 'pts in m', pts_in_m )
+
+xs = [p[0] for p in pts_in_m]
+ys = [p[1] for p in pts_in_m]
 
 print('xs',xs)
 print('ys',ys)
