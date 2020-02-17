@@ -197,6 +197,11 @@ lat = centre_point[0] * deg2rad / 2.0
 
 (latlen,longlen) = get_lat_len_to_metre_factors_at(lat)
 
+pts_in_m = [[(p[1] - centre_point[1]) * longlen,
+  (p[0] - centre_point[0]) * latlen] for p in pts]
+
+print( 'pts in m', pts_in_m )
+
 ys = [(p[0] - centre_point[0]) * latlen for p in pts]
 xs = [(p[1] - centre_point[1]) * longlen for p in pts]
 

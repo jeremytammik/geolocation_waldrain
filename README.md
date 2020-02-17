@@ -49,7 +49,7 @@ More precise calculations are suggested by the following three articles:
 <br/>&rarr; Solution suggested in Wikipedia on the [geographic coordinate system](https://en.wikipedia.org/wiki/Geographic_coordinate_system)
 3. [Understanding terms in Length of Degree formula](https://gis.stackexchange.com/questions/75528/understanding-terms-in-length-of-degree-formula/75535#75535)
 
-Here is the result of calculating the distances between along the edges between the six given points and comparing woth the given edge lengths:
+Here is the result of calculating the distances between along the edges between the six given points and comparing with the given edge lengths:
 
 ```
 Edge    | Given | 1.            | 2.            | 3.
