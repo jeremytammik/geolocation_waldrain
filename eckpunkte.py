@@ -2,7 +2,7 @@
 # eckpunkte.py - define waldrain corner points and measure edge lengths
 # Copyright (C) 2020 by Jeremy Tammik, Autodesk Inc.
 
-import math, numpy
+import math, numpy as np
 
 # Input data
 
@@ -129,6 +129,12 @@ def lat_lon_dist_3(lat1, lon1, lat2, lon2):
   
   return dist_m
 
+def polygon_area(x,y):
+  """Return area of polygon enclosed by a series of x and y coordinates, c.f.
+  https://stackoverflow.com/questions/24467972/calculate-area-of-polygon-given-x-y-coordinates"""
+  return 0.5 * np.abs( np.dot(x,np.roll(y,1)) - np.dot(y,np.roll(x,1)))
+
+
 # Calculate and compare distances
 
 n = len(pts)
@@ -141,7 +147,7 @@ for i in range(n):
 xs = [p[0] for p in pts]
 ys = [p[1] for p in pts]
 
-centre_point = [numpy.mean(xs), numpy.mean(ys)]
+centre_point = [np.mean(xs), np.mean(ys)]
 
 print('centre point:\n ', centre_point)
 
@@ -170,4 +176,7 @@ for i in range(n):
     calculate_and_compare( lat_lon_dist_1, i, j, e ),
     calculate_and_compare( lat_lon_dist_2, i, j, e ),
     calculate_and_compare( lat_lon_dist_3, i, j, e ))
+
+
+#area = polygon_area(xs, ys)
 
