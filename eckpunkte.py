@@ -32,6 +32,8 @@ edge_length = [ # in metres
 
 area = 1043 # square metres
 
+deg2rad = math.pi / 180
+
 # Three distance calculation functions
 
 def lat_lon_dist_1(lat1, lon1, lat2, lon2):
@@ -52,7 +54,6 @@ def lat_lon_dist_1(lat1, lon1, lat2, lon2):
   
   c is the angular distance in radians, and a is the square of half the chord length between the points.
   """
-  deg2rad = math.pi / 180
   R = 6378.137 # Radius of earth in KM
   phi1 = lat1 * deg2rad
   phi2 = lat2 * deg2rad
@@ -74,8 +75,6 @@ def lat_lon_dist_2(lat1, lon1, lat2, lon2):
   
   The wikipedia entry states that the distance calcs are within 0.6m for 100km longitudinally and 1cm for 100km latitudinally.
   """
-  deg2rad = math.pi / 180
-  
   phi = (lat1+lat2) * deg2rad / 2.0 # or just use lat1 for slightly less accurate estimate
 
   m_per_deg_lat = 111132.954 - 559.822 * math.cos( 2.0 * phi ) + 1.175 * math.cos( 4.0 * phi)
@@ -88,14 +87,12 @@ def lat_lon_dist_2(lat1, lon1, lat2, lon2):
   
   return dist_m
 
-def lat_lon_dist_3(lat1, lon1, lat2, lon2):
-  """Return distance between two latitude longtitude points from
-  [understanding terms in Length of Degree formula](https://gis.stackexchange.com/questions/75528/understanding-terms-in-length-of-degree-formula/75535#75535)
+def get_lat_len_to_metre_factors_at(lat)
+  """Return the factors required to convert the length
+  of a degree of latitude and longitude at the given
+  latitude `lat` to meters from
+  [understanding terms in length of degree formula](https://gis.stackexchange.com/questions/75528/understanding-terms-in-length-of-degree-formula/75535#75535)
   """
-  deg2rad = math.pi / 180
-  
-  lat = (lat1+lat2) * deg2rad / 2.0 # or just use lat1 for slightly less accurate estimate
-
   m1 = 111132.92
   m2 = -559.82
   m3 = 1.175
@@ -123,6 +120,16 @@ def lat_lon_dist_3(lat1, lon1, lat2, lon2):
   #print (47.61227235282722 + 0.14/latlen)
   #exit(1)
 
+  return (latlen,longlen)
+
+def lat_lon_dist_3(lat1, lon1, lat2, lon2):
+  """Return distance between two latitude longtitude points from
+  [understanding terms in Length of Degree formula](https://gis.stackexchange.com/questions/75528/understanding-terms-in-length-of-degree-formula/75535#75535)
+  """
+  lat = (lat1+lat2) * deg2rad / 2.0 # or just use lat1 for slightly less accurate estimate
+  
+  (latlen,longlen) = get_lat_len_to_metre_factors_at(lat)
+
   dlat = abs(lat2 - lat1) 
   dlon = abs(lon2 - lon1) 
 
@@ -130,6 +137,9 @@ def lat_lon_dist_3(lat1, lon1, lat2, lon2):
   
   return dist_m
 
+def convert_lat_len_coords_to_metres():
+  
+  
 def polygon_area(x,y):
   """Return area of polygon enclosed by a series of x and y coordinates, c.f.
   https://stackoverflow.com/questions/24467972/calculate-area-of-polygon-given-x-y-coordinates"""
