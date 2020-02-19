@@ -62,3 +62,28 @@ WM - NW | 16.24 | 16.28 (+0.04) | 16.25 (+0.01) | 16.26 (+0.02)
 ```
 
 The third algorithm seems to return the most precise results, assuming the given points and edge distances are correct to start with.
+
+Next, I used the metre-based X and Y coordinates produced by the third algorithm to also calculate the area and compare that with the expected result.
+
+The full report after adding that looks like this:
+
+```
+6 points:
+  NW [47.61240288, 7.66845556]
+  NO [47.6123859, 7.6688685]
+  OM [47.61227361, 7.66880501]
+  SO [47.6120811, 7.6687109]
+  SW [47.6120972, 7.66831761]
+  WM [47.612263, 7.66839227]
+centre point:
+  [47.612250614999994, 7.668591641666667]
+edge lengths:
+  NW - NO: 31.10 31.05 (-0.05) 30.99 (-0.11) 31.10 (+0.00)
+  NO - OM: 13.34 13.38 (+0.04) 13.36 (+0.02) 13.37 (+0.03)
+  OM - SO: 22.51 22.56 (+0.05) 22.54 (+0.03) 22.54 (+0.03)
+  SO - SW: 29.63 29.57 (-0.06) 29.52 (-0.11) 29.62 (-0.01)
+  SW - WM: 19.26 19.29 (+0.03) 19.26 (+0.00) 19.27 (+0.01)
+  WM - NW: 16.24 16.28 (+0.04) 16.26 (+0.02) 16.26 (+0.02)
+area calculated:
+  1042.28 (error -0.72)
+```
