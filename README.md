@@ -67,6 +67,8 @@ The third algorithm seems to return the most precise results, assuming the given
 
 Next, I used the metre-based X and Y coordinates produced by the third algorithm to also calculate the area and compare that with the expected result.
 
+I tweaked the original latitude and longitude coordinates a bit to reduce the errors, even though I am not sure whether they stem from the coordinates or my processing.
+
 The full report after adding that looks like this:
 
 ```
