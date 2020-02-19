@@ -2,7 +2,7 @@
 
 Python geolocation calculation for the [Waldrain](https://waldrain.github.io) plot of land.
 
-To begin with, I had six unconfirmed latitude and longtitude coordinates for the six corner points for a plot of land.
+To begin with, I had six unconfirmed latitude and longitude coordinates for the six corner points for a plot of land.
 
 I also had pretty precise edge length and area measurements in metres:
 
@@ -36,7 +36,7 @@ Calculate the expected edge lengths and area from the given latitude and longtit
 
 ## Solution
 
-I found various answers and articles describing how to calculate the distance in metres between to points given their latitude and longitude.
+I found various answers and articles describing how to calculate the distance in metres between two points given their latitude and longitude.
 
 The simplest suggestion is to apply the [Haversine formula](https://en.wikipedia.org/wiki/Haversine_formula), assuming that the Earth is a sphere with a circumference of 40075 km.
 In that case, the length in meters of 1 degree of latitude is always 111.32 km, and the length in meters of 1 degree of longitude equals `40075 km * cos( latitude ) / 360`.
