@@ -63,6 +63,8 @@ WM - NW | 16.24 | 16.28 (+0.04) | 16.25 (+0.01) | 16.26 (+0.02)
 
 The third algorithm seems to return the most precise results, assuming the given points and edge distances are correct to start with.
 
+## Final Result
+
 Next, I used the metre-based X and Y coordinates produced by the third algorithm to also calculate the area and compare that with the expected result.
 
 The full report after adding that looks like this:
